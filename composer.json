@@ -1,6 +1,6 @@
 {
   "name": "maurice-bot/webhook",
-  "type": "composer-plugin",
+  "type": "library",
   "licence": "MIT",
   "require": {
     "php": ">=5.6"
