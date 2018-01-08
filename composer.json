@@ -1,5 +1,5 @@
 {
-  "name": "maurice-bot/webhook-service",
+  "name": "maurice-bot/webhook",
   "type": "composer-plugin",
   "licence": "MIT",
   "require": {
