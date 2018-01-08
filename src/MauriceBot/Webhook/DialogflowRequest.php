@@ -119,7 +119,7 @@ class DialogflowRequest implements WebhookRequestInterface
      */
     public function set_action($action)
     {
-
+        $this->action = $action;
     }
 
     /**
