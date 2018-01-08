@@ -32,9 +32,11 @@ class DialogflowRequest implements WebhookRequestInterface
      */
     private $action;
 
-    public function __construct($json)
+    public function __construct($json = null)
     {
-        $this->hydrate_JSON($json);
+        if (null !== $json) {
+            $this->hydrate_JSON($json);
+        }
     }
 
     /**
