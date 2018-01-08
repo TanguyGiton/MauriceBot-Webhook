@@ -6,16 +6,11 @@
         convertWarningsToExceptions="true"
         verbose="true"
         stopOnFailure="false"
-        processIsolation="false"
         backupGlobals="false"
-        syntaxCheck="true"
 >
-    <testsuite>
-        <directory suffix="Test.php">./tests/</directory>
-    </testsuite>
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
+    <testsuites>
+        <testsuite>
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>

@@ -7,7 +7,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Maurice-Bot\\Webhook-Service\\": "src/MauriceBot/Webhook/"
+      "MauriceBot\\Webhook\\": "src/MauriceBot/Webhook/"
     }
   },
   "require-dev": {
