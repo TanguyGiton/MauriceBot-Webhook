@@ -80,7 +80,7 @@ class Action
     }
 
     /**
-     * @return string
+     * @return ResponseInterface
      */
     public function get_response()
     {
