@@ -82,8 +82,8 @@ class Action
     /**
      * @return string
      */
-    public function format_json()
+    public function get_response()
     {
-        return json_encode($this->response);
+        return $this->response;
     }
 }
