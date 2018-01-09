@@ -3,7 +3,7 @@
 namespace MauriceBot\Webhook;
 
 
-interface WebhookContextInterface
+interface ContextInterface extends \JsonSerializable
 {
 
     /**

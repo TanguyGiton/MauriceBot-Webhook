@@ -2,7 +2,7 @@
 
 namespace MauriceBot\Webhook;
 
-interface WebhookRequestInterface
+interface RequestInterface
 {
 
     /**
@@ -32,7 +32,7 @@ interface WebhookRequestInterface
     /**
      * @param $key
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function get_parameter($key);
 
@@ -44,7 +44,7 @@ interface WebhookRequestInterface
     /**
      * @param string $name
      *
-     * @return WebhookContextInterface
+     * @return ContextInterface
      */
     public function get_context($name);
 

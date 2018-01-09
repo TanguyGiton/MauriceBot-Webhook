@@ -10,7 +10,7 @@ namespace MauriceBot\Webhook;
  *
  * @author    Tanguy Giton, Mamoun Sqalli, Vincent Scheffer
  */
-class DialogflowRequest implements WebhookRequestInterface
+class DialogflowRequest implements RequestInterface
 {
     /**
      * @var \DateTime
@@ -64,7 +64,7 @@ class DialogflowRequest implements WebhookRequestInterface
         $this->parameters[$key] = $value;
     }
 
-    public function add_context(WebhookContextInterface $context)
+    public function add_context(ContextInterface $context)
     {
         $name = $context->get_name();
         if ($this->has_context($name)) {
@@ -125,7 +125,7 @@ class DialogflowRequest implements WebhookRequestInterface
     /**
      * @param string $name
      *
-     * @return WebhookContextInterface
+     * @return ContextInterface
      */
     public function get_context($name)
     {

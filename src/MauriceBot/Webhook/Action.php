@@ -19,7 +19,7 @@ class Action
 
     private $model;
 
-    public function __construct(WebhookRequestInterface $request, Response $response, Model $model)
+    public function __construct(RequestInterface $request, ResponseInterface $response, Model $model)
     {
         $this->request  = $request;
         $this->response = $response;
@@ -32,20 +32,19 @@ class Action
     public function execute()
     {
         $action     = $this->request->get_action();
-        $parameters = $this->request->get_parameters();
 
         switch ($action) {
             case 'prix':
-                $this->prix_action($parameters);
+                $this->prix_action();
                 break;
             default:
                 $this->error();
         }
     }
 
-    private function prix_action($parameters)
+    private function prix_action()
     {
-        $annee = array_key_exists('admission-annee', $parameters) ? $parameters['admission-annee'] : null;
+        $annee = $this->request->get_parameter('admission-annee');
 
         switch ($annee) {
             case '1ère année':
@@ -70,8 +69,8 @@ class Action
 
         $prix = $this->model->price_by_year($year_code);
 
-        $this->response->add_context_out('prix-followup', 5, ['admission-annee' => $annee]);
-        $this->response->set_followup_event('prix_reponse', ['prix' => $prix]);
+        $this->response->add_context_out(new DialogflowContext('prix-followup', ['admission-annee' => $annee], 5));
+        $this->response->set_followup_event(new DialogflowEvent('prix_reponse', ['prix' => $prix]));
     }
 
     private function error()
@@ -81,10 +80,10 @@ class Action
     }
 
     /**
-     * @return Response
+     * @return string
      */
-    public function get_response()
+    public function format_json()
     {
-        return $this->response;
+        return json_encode($this->response);
     }
 }
