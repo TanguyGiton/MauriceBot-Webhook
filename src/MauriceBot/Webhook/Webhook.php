@@ -81,7 +81,7 @@ class Webhook
      *
      * @return Webhook
      */
-    protected function registerAction(ActionInterface $action)
+    public function registerAction(ActionInterface $action)
     {
         $this->actions[] = $action;
 
