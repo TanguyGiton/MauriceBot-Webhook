@@ -73,6 +73,9 @@ class Webhook
 
     public function getResponse()
     {
+        if (null === $this->response) {
+            $this->run();
+        }
         return $this->response;
     }
 
