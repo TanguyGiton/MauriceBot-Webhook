@@ -10,26 +10,26 @@ interface ResponseInterface extends \JsonSerializable
      *
      * @return void
      */
-    public function set_text($text);
+    public function setText($text);
 
     /**
      * @param ContextInterface $context
      *
      * @return void
      */
-    public function add_context_out(ContextInterface $context);
+    public function addContextOut(ContextInterface $context);
 
     /**
      * @param EventInterface $event
      *
      * @return void
      */
-    public function set_followup_event(EventInterface $event);
+    public function setFollowupEvent(EventInterface $event);
 
     /**
      * @param $source string
      *
      * @return void
      */
-    public function set_source($source);
+    public function setSource($source);
 }

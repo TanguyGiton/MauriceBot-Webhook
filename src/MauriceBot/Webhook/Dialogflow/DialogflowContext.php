@@ -1,6 +1,8 @@
 <?php
 
-namespace MauriceBot\Webhook;
+namespace MauriceBot\Webhook\Dialogflow;
+
+use MauriceBot\Webhook\ContextInterface;
 
 class DialogflowContext implements ContextInterface
 {
@@ -27,12 +29,12 @@ class DialogflowContext implements ContextInterface
      * @param array $parameters
      * @param int $lifespan
      */
-    public function __construct($name, array $parameters, $lifespan)
+    public function __construct($name = null, array $parameters = [], $lifespan = null)
     {
-        $this->set_name($name);
-        $this->set_lifespan($lifespan);
+        $this->setName($name);
+        $this->setLifespan($lifespan);
         foreach ($parameters as $key => $value) {
-            $this->set_parameter($key, $value);
+            $this->setParameter($key, $value);
         }
     }
 
@@ -42,7 +44,7 @@ class DialogflowContext implements ContextInterface
      *
      * @return void
      */
-    public function set_parameter($key, $value)
+    public function setParameter($key, $value)
     {
         $this->parameters[$key] = $value;
     }
@@ -50,7 +52,7 @@ class DialogflowContext implements ContextInterface
     /**
      * @return string
      */
-    public function get_name()
+    public function getName()
     {
         return $this->name;
     }
@@ -60,7 +62,7 @@ class DialogflowContext implements ContextInterface
      *
      * @return void
      */
-    public function set_name($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -70,9 +72,9 @@ class DialogflowContext implements ContextInterface
      *
      * @return mixed
      */
-    public function get_parameter($key)
+    public function getParameter($key)
     {
-        if ($this->has_parameter($key)) {
+        if ($this->hasParameter($key)) {
             return $this->parameters[$key];
         }
 
@@ -84,7 +86,7 @@ class DialogflowContext implements ContextInterface
      *
      * @return bool
      */
-    public function has_parameter($key)
+    public function hasParameter($key)
     {
         return isset($this->parameters[$key]);
     }
@@ -94,7 +96,7 @@ class DialogflowContext implements ContextInterface
      *
      * @return void
      */
-    public function delete_parameter($key)
+    public function deleteParameter($key)
     {
         unset($this->parameters[$key]);
     }
@@ -102,7 +104,7 @@ class DialogflowContext implements ContextInterface
     /**
      * @return int
      */
-    public function get_lifespan()
+    public function getLifespan()
     {
         return $this->lifespan;
     }
@@ -112,7 +114,7 @@ class DialogflowContext implements ContextInterface
      *
      * @return void
      */
-    public function set_lifespan($lifespan)
+    public function setLifespan($lifespan)
     {
         $this->lifespan = (int)$lifespan;
     }
@@ -120,7 +122,7 @@ class DialogflowContext implements ContextInterface
     /**
      * @return array
      */
-    public function get_parameters()
+    public function getParameters()
     {
         return $this->parameters;
     }

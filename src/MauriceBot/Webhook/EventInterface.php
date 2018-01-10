@@ -11,7 +11,7 @@ interface EventInterface extends \JsonSerializable
      *
      * @return void
      */
-    public function set_name($name);
+    public function setName($name);
 
     /**
      * @param $key string
@@ -19,5 +19,5 @@ interface EventInterface extends \JsonSerializable
      *
      * @return void
      */
-    public function add_data($key, $value);
+    public function addData($key, $value);
 }

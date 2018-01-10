@@ -10,53 +10,53 @@ interface RequestInterface
      *
      * @return void
      */
-    public function hydrate_JSON($json);
+    public function hydrateJSON($json);
 
     /**
      * @return \DateTime
      */
-    public function get_time();
+    public function getTime();
 
     /**
      * @return string
      */
-    public function get_action();
+    public function getAction();
 
     /**
      * @param $key
      *
      * @return bool
      */
-    public function has_parameter($key);
+    public function hasParameter($key);
 
     /**
      * @param $key
      *
      * @return mixed|null
      */
-    public function get_parameter($key);
+    public function getParameter($key);
 
     /**
      * @return array
      */
-    public function get_parameters();
+    public function getParameters();
 
     /**
      * @param string $name
      *
      * @return ContextInterface
      */
-    public function get_context($name);
+    public function getContext($name);
 
     /**
      * @return array WebhookContext
      */
-    public function get_contexts();
+    public function getContexts();
 
     /**
      * @param string $name
      *
      * @return bool
      */
-    public function has_context($name);
+    public function hasContext($name);
 }

@@ -1,6 +1,9 @@
 <?php
 
-namespace MauriceBot\Webhook;
+namespace MauriceBot\Webhook\Dialogflow;
+
+use MauriceBot\Webhook\ContextInterface;
+use MauriceBot\Webhook\RequestInterface;
 
 /**
  * The request from Dialogflow
@@ -35,40 +38,40 @@ class DialogflowRequest implements RequestInterface
     public function __construct($json = null)
     {
         if (null !== $json) {
-            $this->hydrate_JSON($json);
+            $this->hydrateJSON($json);
         }
     }
 
     /**
      * @param $json
      */
-    public function hydrate_JSON($json)
+    public function hydrateJSON($json)
     {
 
         $json_array = json_decode($json, 'true');
 
-        $this->set_time(new \DateTime($json_array['timestamp']));
-        $this->set_action($json_array['result']['action']);
+        $this->setTime(new \DateTime($json_array['timestamp']));
+        $this->setAction($json_array['result']['action']);
 
         foreach ((array)$json_array['result']['parameters'] as $key => $value) {
-            $this->set_parameter($key, $value);
+            $this->setParameter($key, $value);
         }
 
         foreach ((array)$json_array['result']['contexts'] as $context) {
-            $this->add_context(new DialogflowContext($context['name'], $context['parameters'], $context['lifespan']));
+            $this->addContext(new DialogflowContext($context['name'], $context['parameters'], $context['lifespan']));
         }
     }
 
-    public function set_parameter($key, $value)
+    public function setParameter($key, $value)
     {
         $this->parameters[$key] = $value;
     }
 
-    public function add_context(ContextInterface $context)
+    public function addContext(ContextInterface $context)
     {
-        $name = $context->get_name();
-        if ($this->has_context($name)) {
-            $this->delete_context($name);
+        $name = $context->getName();
+        if ($this->hasContext($name)) {
+            $this->deleteContext($name);
         }
         $this->contexts[] = $context;
     }
@@ -78,9 +81,9 @@ class DialogflowRequest implements RequestInterface
      *
      * @return bool
      */
-    public function has_context($name)
+    public function hasContext($name)
     {
-        return $this->get_context_offset($name) !== -1;
+        return $this->getContextOffset($name) !== -1;
     }
 
     /**
@@ -88,7 +91,7 @@ class DialogflowRequest implements RequestInterface
      *
      * @return int position
      */
-    private function get_context_offset($name)
+    private function getContextOffset($name)
     {
         foreach ($this->contexts as $key => $context) {
             if ($context->get_name() === $name) {
@@ -99,9 +102,9 @@ class DialogflowRequest implements RequestInterface
         return -1;
     }
 
-    public function delete_context($name)
+    public function deleteContext($name)
     {
-        if (($key = $this->get_context_offset($name)) !== -1) {
+        if (($key = $this->getContextOffset($name)) !== -1) {
             unset($this->contexts[$key]);
         }
     }
@@ -109,7 +112,7 @@ class DialogflowRequest implements RequestInterface
     /**
      * @return string
      */
-    public function get_action()
+    public function getAction()
     {
         return $this->action;
     }
@@ -117,7 +120,7 @@ class DialogflowRequest implements RequestInterface
     /**
      * @param $action
      */
-    public function set_action($action)
+    public function setAction($action)
     {
         $this->action = $action;
     }
@@ -127,9 +130,9 @@ class DialogflowRequest implements RequestInterface
      *
      * @return ContextInterface
      */
-    public function get_context($name)
+    public function getContext($name)
     {
-        if (($key = $this->get_context_offset($name)) !== -1) {
+        if (($key = $this->getContextOffset($name)) !== -1) {
             return $this->contexts[$key];
         }
 
@@ -139,7 +142,7 @@ class DialogflowRequest implements RequestInterface
     /**
      * @return \DateTime
      */
-    public function get_time()
+    public function getTime()
     {
         return $this->time;
     }
@@ -147,7 +150,7 @@ class DialogflowRequest implements RequestInterface
     /**
      * @param \DateTime $time
      */
-    public function set_time(\DateTime $time)
+    public function setTime(\DateTime $time)
     {
         $this->time = $time;
     }
@@ -157,9 +160,9 @@ class DialogflowRequest implements RequestInterface
      *
      * @return mixed
      */
-    public function get_parameter($key)
+    public function getParameter($key)
     {
-        if ($this->has_parameter($key)) {
+        if ($this->hasParameter($key)) {
             return $this->parameters[$key];
         }
 
@@ -171,7 +174,7 @@ class DialogflowRequest implements RequestInterface
      *
      * @return bool
      */
-    public function has_parameter($key)
+    public function hasParameter($key)
     {
         return isset($this->parameters[$key]);
     }
@@ -179,7 +182,7 @@ class DialogflowRequest implements RequestInterface
     /**
      * @return array WebhookContext
      */
-    public function get_contexts()
+    public function getContexts()
     {
         return $this->contexts;
     }
@@ -187,7 +190,7 @@ class DialogflowRequest implements RequestInterface
     /**
      * @return array
      */
-    public function get_parameters()
+    public function getParameters()
     {
         return $this->parameters;
     }

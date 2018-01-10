@@ -1,6 +1,10 @@
 <?php
 
-namespace MauriceBot\Webhook;
+namespace MauriceBot\Webhook\Dialogflow;
+
+use MauriceBot\Webhook\ContextInterface;
+use MauriceBot\Webhook\EventInterface;
+use MauriceBot\Webhook\ResponseInterface;
 
 /**
  * The response to Dialogflow
@@ -26,7 +30,7 @@ class DialogflowResponse implements ResponseInterface
     /**
      * @var array $data
      */
-    private $data = [];
+    //private $data;
 
     /**
      * @var array $contextOut
@@ -43,7 +47,7 @@ class DialogflowResponse implements ResponseInterface
      */
     private $followupEvent;
 
-    public function set_text($text)
+    public function setText($text)
     {
         $this->speech        = $text;
         $this->displayText   = $text;
@@ -52,7 +56,7 @@ class DialogflowResponse implements ResponseInterface
     /**
      * @return string
      */
-    public function get_speech()
+    public function getSpeech()
     {
         return $this->speech;
     }
@@ -60,7 +64,7 @@ class DialogflowResponse implements ResponseInterface
     /**
      * @return string
      */
-    public function get_display_text()
+    public function getDisplayText()
     {
         return $this->displayText;
     }
@@ -68,12 +72,12 @@ class DialogflowResponse implements ResponseInterface
     /**
      * @return array
      */
-    public function get_contexts_out()
+    public function getContextsOut()
     {
         return $this->contextOut;
     }
 
-    public function add_context_out(ContextInterface $context)
+    public function addContextOut(ContextInterface $context)
     {
         $this->contextOut[] = $context;
     }
@@ -81,7 +85,7 @@ class DialogflowResponse implements ResponseInterface
     /**
      * @return string
      */
-    public function get_source()
+    public function getSource()
     {
         return $this->source;
     }
@@ -89,7 +93,7 @@ class DialogflowResponse implements ResponseInterface
     /**
      * @param string $source
      */
-    public function set_source($source)
+    public function setSource($source)
     {
         $this->source = $source;
     }
@@ -97,12 +101,12 @@ class DialogflowResponse implements ResponseInterface
     /**
      * @return EventInterface
      */
-    public function get_followup_event()
+    public function getFollowupEvent()
     {
         return $this->followupEvent;
     }
 
-    public function set_followup_event(EventInterface $event)
+    public function setFollowupEvent(EventInterface $event)
     {
         $this->followupEvent = $event;
     }

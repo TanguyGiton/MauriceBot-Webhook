@@ -1,7 +1,9 @@
 <?php
 
-namespace MauriceBot\Webhook;
+namespace MauriceBot\Webhook\Dialogflow;
 
+
+use MauriceBot\Webhook\EventInterface;
 
 class DialogflowEvent implements EventInterface
 {
@@ -15,11 +17,11 @@ class DialogflowEvent implements EventInterface
      */
     private $data = [];
 
-    public function __construct($name, array $data)
+    public function __construct($name = null, array $data = [])
     {
-        $this->set_name($name);
+        $this->setName($name);
         foreach ($data as $key => $value) {
-            $this->add_data($key, $value);
+            $this->addData($key, $value);
         }
     }
 
@@ -28,7 +30,7 @@ class DialogflowEvent implements EventInterface
      *
      * @return void
      */
-    public function set_name($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -39,7 +41,7 @@ class DialogflowEvent implements EventInterface
      *
      * @return void
      */
-    public function add_data($key, $value)
+    public function addData($key, $value)
     {
         $this->data[$key] = $value;
     }

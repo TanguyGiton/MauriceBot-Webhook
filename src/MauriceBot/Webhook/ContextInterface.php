@@ -9,33 +9,33 @@ interface ContextInterface extends \JsonSerializable
     /**
      * @return string
      */
-    public function get_name();
+    public function getName();
 
     /**
      * @param string $name
      *
      * @return void
      */
-    public function set_name($name);
+    public function setName($name);
 
     /**
      * @param string $key
      *
      * @return bool
      */
-    public function has_parameter($key);
+    public function hasParameter($key);
 
     /**
      * @param string $key
      *
      * @return mixed
      */
-    public function get_parameter($key);
+    public function getParameter($key);
 
     /**
      * @return array
      */
-    public function get_parameters();
+    public function getParameters();
 
     /**
      * @param string $key
@@ -43,24 +43,24 @@ interface ContextInterface extends \JsonSerializable
      *
      * @return void
      */
-    public function set_parameter($key, $value);
+    public function setParameter($key, $value);
 
     /**
      * @param string $key
      *
      * @return void
      */
-    public function delete_parameter($key);
+    public function deleteParameter($key);
 
     /**
      * @return int
      */
-    public function get_lifespan();
+    public function getLifespan();
 
     /**
      * @param int $lifespan
      *
      * @return void
      */
-    public function set_lifespan($lifespan);
+    public function setLifespan($lifespan);
 }
