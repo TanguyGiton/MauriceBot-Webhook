@@ -48,6 +48,8 @@ class Webhook
 
         if (null !== $action) {
             $this->response = $action->run($this->request, $this->response_builder);
+        } else {
+            $this->response = new Error(Error::CODE_BAD_REQUEST, 'This action doesn\'t exist');
         }
 
         return $this;
