@@ -9,7 +9,7 @@ interface ActionInterface
      * @param RequestInterface $request
      * @param ResponseBuilderInterface $response_builder
      *
-     * @return ResponseInterface
+     * @return Error|ResponseInterface
      */
     public function run(RequestInterface $request, ResponseBuilderInterface $response_builder);
 
