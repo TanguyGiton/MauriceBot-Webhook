@@ -34,10 +34,22 @@ class Error implements \JsonSerializable
      */
     const CODE_SERVICE_UNAVAILABLE = 503;
 
+    /**
+     * @var int
+     */
     private $code;
 
+    /**
+     * @var string
+     */
     private $message;
 
+    /**
+     * Error constructor.
+     *
+     * @param int $code
+     * @param string $message
+     */
     public function __construct($code, $message)
     {
         $this->code    = $code;
@@ -54,5 +66,21 @@ class Error implements \JsonSerializable
     public function jsonSerialize()
     {
         return get_object_vars($this);
+    }
+
+    /**
+     * @return int
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 }
