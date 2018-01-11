@@ -26,7 +26,7 @@ class DialogflowRequest implements RequestInterface
     private $parameters;
 
     /**
-     * @var array WebhookContext
+     * @var ContextInterface[]
      */
     private $contexts = [];
 
@@ -94,7 +94,7 @@ class DialogflowRequest implements RequestInterface
     private function getContextOffset($name)
     {
         foreach ($this->contexts as $key => $context) {
-            if ($context->get_name() === $name) {
+            if ($context->getName() === $name) {
                 return $key;
             }
         }
@@ -180,7 +180,7 @@ class DialogflowRequest implements RequestInterface
     }
 
     /**
-     * @return array WebhookContext
+     * @return ContextInterface[]
      */
     public function getContexts()
     {

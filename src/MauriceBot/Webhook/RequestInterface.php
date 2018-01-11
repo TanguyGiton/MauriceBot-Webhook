@@ -49,7 +49,7 @@ interface RequestInterface
     public function getContext($name);
 
     /**
-     * @return array WebhookContext
+     * @return ContextInterface[]
      */
     public function getContexts();
 
